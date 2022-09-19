@@ -9,11 +9,11 @@ import SwiftUI
 
 
 struct CalculationTest: View {
-    @State var num1 = 0
-    @State var num2 = 0
-    @State var num3 = 0
-    @State var num4 = 0
-    @State var num5 = 0
+    @State var numText1 = ""
+    @State var numText2 = ""
+    @State var numText3 = ""
+    @State var numText4 = ""
+    @State var numText5 = ""
 
     @State var total = 0
 
@@ -21,23 +21,28 @@ struct CalculationTest: View {
         
         HStack {
             VStack{
-                TextField("hoge", value: $num1, formatter: NumberFormatter())
-                    .textModifier()
+                TextField("", text: $numText1)
+                    .customTextFieldStyle()
                 
-                TextField("hoge", value: $num2, formatter: NumberFormatter())
-                    .textModifier()
+                TextField("", text: $numText2)
+                    .customTextFieldStyle()
                 
-                TextField("hoge", value: $num3, formatter: NumberFormatter())
-                    .textModifier()
+                TextField("", text: $numText3)
+                    .customTextFieldStyle()
                 
-                TextField("hoge", value: $num4, formatter: NumberFormatter())
-                    .textModifier()
+                TextField("", text: $numText4)
+                    .customTextFieldStyle()
                 
-                TextField("hoge", value: $num5, formatter: NumberFormatter())
-                    .textModifier()
+                TextField("", text: $numText5)
+                    .customTextFieldStyle()
                 
                 
                 Button {
+                    let num1 = Int(numText1) ?? 0
+                    let num2 = Int(numText2) ?? 0
+                    let num3 = Int(numText3) ?? 0
+                    let num4 = Int(numText4) ?? 0
+                    let num5 = Int(numText5) ?? 0
                     total = num1 + num2 + num3 + num4 + num5
                 } label: {
                     Text("Button")
@@ -57,7 +62,7 @@ struct CalculationTest: View {
 
 extension TextField {
     
-    func textModifier() -> some View {
+    func customTextFieldStyle() -> some View {
         self
             .textFieldStyle(RoundedBorderTextFieldStyle())
             .frame(width: 100, height: 35)
