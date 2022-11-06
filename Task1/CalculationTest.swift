@@ -21,19 +21,19 @@ struct CalculationTest: View {
         
         HStack {
             VStack{
-                TextField("hoge", value: $num1, formatter: NumberFormatter())
+                TextField("", value: $num1, formatter: NumberFormatter())
                     .textModifier()
                 
-                TextField("hoge", value: $num2, formatter: NumberFormatter())
+                TextField("", value: $num2, formatter: NumberFormatter())
                     .textModifier()
                 
-                TextField("hoge", value: $num3, formatter: NumberFormatter())
+                TextField("", value: $num3, formatter: NumberFormatter())
                     .textModifier()
                 
-                TextField("hoge", value: $num4, formatter: NumberFormatter())
+                TextField("", value: $num4, formatter: NumberFormatter())
                     .textModifier()
                 
-                TextField("hoge", value: $num5, formatter: NumberFormatter())
+                TextField("", value: $num5, formatter: NumberFormatter())
                     .textModifier()
                 
                 

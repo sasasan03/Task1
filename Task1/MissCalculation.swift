@@ -9,46 +9,51 @@ import SwiftUI
 
 //なぜTextfieldを５個並べるとエラーが発生する（長すぎる？と怒られます）
 struct MissCalculation: View {
-    @State var num1 = ""
-    @State var num2 = ""
-    @State var num3 = ""
-    @State var num4 = ""
-    @State var num5 = ""
+//下記の方法では０が出てしまう。
+//    @State var num1 = 0
+    @State var numText1 = ""
+    @State var numText2 = ""
+    @State var numText3 = ""
+    @State var numText4 = ""
+    @State var numText5 = ""
     
-    @State var total = 0
+    @State var total = "Label"
     
     var body: some View {
         
         HStack {
             VStack {
-                TextField("", text: $num1)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .frame(width: 100, height: 50, alignment: .leading)
-                    .keyboardType(.numberPad)
-                TextField("", text: $num2)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .frame(width: 100, height: 50, alignment: .leading)
-                    .keyboardType(.numberPad)
-                TextField("", text: $num3)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .frame(width: 100, height: 50, alignment: .leading)
-                    .keyboardType(.numberPad)
-                TextField("", text: $num4)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .frame(width: 100, height: 50, alignment: .leading)
-                    .keyboardType(.numberPad)
-                TextField("", text: $num5)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .frame(width: 100, height: 50, alignment: .leading)
-                    .keyboardType(.numberPad)
+                TextField("", value: $numText1, formatter: NumberFormatter())
+                    .customTextFieldStyle()
+                TextField("", value: $numText2, formatter: NumberFormatter())
+                    .customTextFieldStyle()
+                TextField("", value: $numText3, formatter: NumberFormatter())
+                    .customTextFieldStyle()
+                TextField("", value: $numText4, formatter: NumberFormatter())
+                    .customTextFieldStyle()
+                TextField("", value: $numText5, formatter: NumberFormatter())
+                    .customTextFieldStyle()
+//                TextField("", text: $numText5)
+//                    .customTextFieldStyle()
 
                 Button {
-//                    self.total = (Int(num1) ?? 0) + (Int(num2) ?? 0) + (Int(num3) ?? 0) + (Int(num4) ?? 0) + (Int(num5) ?? 0)
+// Buttonの中でプロパティを使い小分けすることでエラー解消
+                    let num1 = Int(numText1) ?? 0
+                    let num2 = Int(numText2) ?? 0
+                    let num3 = Int(numText3) ?? 0
+                    let num4 = Int(numText4) ?? 0
+                    let num5 = Int(numText5) ?? 0
+// string型にint型を代入使用と認めエラー?（下記の方法で動かす方法はないのか？）
+//                  total = num1 + num2 + num3 + num4 + num5
+//エラーが発生。小分けしてとエラーが出る。（４つめまでは計算できるが５個目でクラッシュ）
+                    
+
+                    
                 } label: {
                     Text("Button")
                 }
-
-                Text("計算結果")
+//                Text(total)
+                Text(total)
 
                 Spacer()
             }//HStackの終わり
